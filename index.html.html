@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love 🐰</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  overflow:hidden;
+  color:white;
+}
+
+/* VIDEO BACKGROUND */
+video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-5;
+}
+
+/* IMAGE BACKGROUND FALLBACK */
+.bg-img{
+  position:fixed;
+  inset:0;
+  background:url("bg_image.jpg") center/cover no-repeat;
+  z-index:-6;
+}
+
+/* DARK OVERLAY */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  z-index:-4;
+}
+
+/* PAGES */
+.page{
+  display:none;
+  position:absolute;
+  inset:0;
+  padding:25px 20px;
+  text-align:center;
+  z-index:10;
+}
+
+/* ENTER PAGE */
+.enterBox{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+}
+
+.enterBtn{
+  padding:18px 45px;
+  font-size:22px;
+  border-radius:40px;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff7eb3,#ff4d6d);
+  color:white;
+  animation:pulse 2s infinite;
+}
+
+/* NAME CHANGE */
+#nameBox{
+  font-size:28px;
+}
+
+#changingName{
+  transition:opacity .6s ease;
+}
+
+/* BACK BUTTON */
+.backBtn{
+  position:fixed;
+  top:15px;
+  left:15px;
+  padding:8px 18px;
+  border-radius:20px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,.25);
+  color:white;
+  backdrop-filter:blur(6px);
+  z-index:50;
+}
+
+/* BUTTONS */
+button{
+  padding:12px 28px;
+  margin:12px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+.no{
+  background:#444;
+  color:white;
+  position:absolute;
+}
+
+/* HUG BOX */
+#hugBox{
+  display:none;
+  position:relative;
+  z-index:30;
+  margin-top:25px;
+}
+
+.hugGif{
+  width:180px;
+  display:block;
+  margin:0 auto 10px;
+  animation:pop .5s ease;
+}
+
+/* FLOATING EMOJI */
+.float{
+  position:fixed;
+  bottom:-20px;
+  font-size:22px;
+  animation:float 7s linear infinite;
+  opacity:.8;
+  z-index:5;
+}
+
+/* ANIMATIONS */
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+@keyframes pop{
+  from{transform:scale(0)}
+  to{transform:scale(1)}
+}
+
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-img"></div>
+
+<video autoplay muted loop playsinline>
+  <source src="yara.mp4.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<audio id="bgMusic" loop>
+  <source src="zara.mp3.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+  <div class="enterBox">
+    <div id="nameBox">
+      For my <span id="changingName">うさぎ 🐰</span>
+    </div>
+    <button class="enterBtn" onclick="startLove()">ENTER 💖</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <button class="backBtn" onclick="goBack()">← back</button>
+
+  <h1>Hey 🐰</h1>
+
+  <p style="margin-top:25px;line-height:1.8;">
+       It’s a little strange how love happened to me.<br><br>
+
+    I fell in love with you without seeing you every day,<br>
+    without touching you,<br>
+    without being together.<br><br>
+
+    You are There <br>
+    I am in Here <br><br>
+
+    We met only two times before I came here…<br>
+    yet my heart chose you quietly and deeply.
+  </p>
+
+  <p style="margin-top:20px;font-size:18px;">
+    うさぎ 🌸💗🤍
+  </p>
+
+  <button class="yes" onclick="goPage(3)">Next 💕</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <button class="backBtn" onclick="goBack()">← back</button>
+
+  <h2 style="margin-top:90px;">Will you be my girl forever? 💍</h2>
+
+  <button class="yes" onclick="goPage(4)">Yes 💖</button>
+  <button class="no" id="noBtn">No 😅</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <button class="backBtn" onclick="goBack()">← back</button>
+
+  <h2>You chose yes 🥹</h2>
+
+  <p style="margin-top:20px;">
+    Even distance couldn’t stop my feelings.<br>
+    Even silence couldn’t change my heart.
+  </p>
+
+  <button onclick="showHug()">🤗 aaja gale lagalu</button>
+
+  <div id="hugBox">
+    <img class="hugGif"
+      src="https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif">
+    <div>
+     A warm hug from far away 💞<br>
+      bahut miss karrahu 💖
+    </div>
+  </div>
+
+  <button class="yes" onclick="goPage(5)">One last thing 💌</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <button class="backBtn" onclick="goBack()">← back</button>
+
+  <h2>From my heart 💗</h2>
+
+  <p style="margin-top:25px;line-height:1.9;">
+     My life has been changing slowly since you became part of it.<br><br>
+
+    I think of you in small moments,<br>
+    in quiet nights,<br>
+    and in dreams where distance doesn’t exist.<br><br>
+    I don’t promise perfection.<br>
+    I only promise honesty, care, and a heart that chooses you every day.<br><br>
+	  Whatever you feel,<br>
+    take your time 🤍
+  </p>
+</div>
+
+<script>
+let currentPage=1;
+
+const names=["うさぎ 🐰","छूनूमुनू 🌸","nani 🤍"];
+let i=0;
+const nameEl=document.getElementById("changingName");
+
+setInterval(()=>{
+  nameEl.style.opacity=0;
+  setTimeout(()=>{
+    i=(i+1)%names.length;
+    nameEl.textContent=names[i];
+    nameEl.style.opacity=1;
+  },600);
+},2200);
+
+function goPage(n){
+  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
+  document.getElementById("page"+n).style.display="block";
+  currentPage=n;
+  if(n===3) moveNo();
+}
+
+function goBack(){
+  if(currentPage>1) goPage(currentPage-1);
+}
+
+function startLove(){
+  document.getElementById("bgMusic")?.play();
+  goPage(2);
+}
+
+function moveNo(){
+  const no=document.getElementById("noBtn");
+  no.onmouseover=()=>{
+    no.style.left=Math.random()*70+"vw";
+    no.style.top=Math.random()*70+"vh";
+  };
+}
+
+function showHug(){
+  document.getElementById("hugBox").style.display="block";
+}
+
+const emojis=["💖","🌸","🪷","🐰"];
+setInterval(()=>{
+  const e=document.createElement("div");
+  e.className="float";
+  e.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),7000);
+},1300);
+
+goPage(1);
+</script>
+
+</body>
+</html>
